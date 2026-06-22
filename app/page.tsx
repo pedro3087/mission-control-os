@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import { OSHeader } from "@/components/OSHeader";
 import { PortfolioPanel } from "@/components/PortfolioPanel";
 import { BrainPanel } from "@/components/BrainPanel";
@@ -25,7 +26,11 @@ const VIEW_LABELS: Record<DashboardView, { portfolio: string; brain: string; gua
 };
 
 export default function MissionControl() {
-  const { dashboardView } = useStore();
+  const dashboardViewFromStore = useStore((s) => s.dashboardView);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  // Use default until client-side store has hydrated to avoid SSR mismatch
+  const dashboardView: DashboardView = mounted ? dashboardViewFromStore : "standard";
   const widths = VIEW_WIDTHS[dashboardView];
   const labels = VIEW_LABELS[dashboardView];
 

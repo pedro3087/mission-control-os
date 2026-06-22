@@ -52,7 +52,7 @@ export function ProjectDrawer() {
             sub={project.revenueGrowthPct > 0 ? `+${project.revenueGrowthPct}% MoM` : `${project.revenueGrowthPct}% MoM`}
             subColor={project.revenueGrowthPct > 0 ? "text-[#39d353]" : "text-[#f85149]"} />
           <BigStat label="CONVERSIÓN" value={`${project.conversionPct}%`} sub="visita→registro" subColor="text-[#6e7b8b]" />
-          <BigStat label="USUARIOS" value={project.activeUsers.toLocaleString()} sub="últimos 30d" subColor="text-[#6e7b8b]" />
+          <BigStat label="USUARIOS" value={project.activeUsers.toLocaleString('en-US')} sub="últimos 30d" subColor="text-[#6e7b8b]" />
         </Section>
 
         {/* Reliability */}
@@ -71,7 +71,7 @@ export function ProjectDrawer() {
         <Section title="ÚLTIMO COMMIT">
           <div className="bg-[#070b0f] rounded p-2">
             <p className="text-[11px] text-[#c9d1d9] font-mono mb-1">{project.lastCommit}</p>
-            <p className="text-[10px] text-[#6e7b8b]">{timeAgo(project.lastCommitAt)}</p>
+            <p className="text-[10px] text-[#6e7b8b]" suppressHydrationWarning>{timeAgo(project.lastCommitAt)}</p>
           </div>
         </Section>
 
@@ -96,7 +96,7 @@ export function ProjectDrawer() {
         </Section>
 
         <div className="text-[10px] text-[#6e7b8b] pt-2 border-t border-[#1a2332]">
-          Deploy hace {timeAgo(project.deployedAt)} · Construido por la fábrica
+          <span suppressHydrationWarning>Deploy hace {timeAgo(project.deployedAt)}</span> · Construido por la fábrica
         </div>
       </div>
     </div>

@@ -20,37 +20,17 @@ Mission Control resuelve los tres: un OS unificado con monitoreo en tiempo real,
 
 ## Capturas
 
-**Vista Standard** — los tres paneles en equilibrio
+**Vista Standard** — Portfolio · Factory Brain · Guardian en equilibrio
 
-![Standard](public/screenshots/01-standard.png)
-
-**Vista Portfolio** — foco en métricas de proyectos
-
-![Portfolio](public/screenshots/02-portfolio.png)
-
-**Vista Brain** — patrones aprendidos entre proyectos
-
-![Brain](public/screenshots/03-brain.png)
-
-**Vista OPS** — Guardian en primer plano con alertas en vivo
-
-![Ops](public/screenshots/04-ops.png)
+![Standard](screenshots/01-standard.png)
 
 **Chat con agentes IA** — OS Agent respondiendo con contexto del portafolio
 
-![Chat](public/screenshots/05-chat.png)
+![Chat](screenshots/03-chat.png)
 
-**Detalle de proyecto** — métricas, stack y estado del Guardian
+**OPS Center — Tareas** — tasks de agentes en ejecución, cola y esperando aprobación humana
 
-![Drawer](public/screenshots/06-project-drawer.png)
-
-**Tasks — OPS Center** — tareas de agentes en ejecución, en cola y esperando aprobación humana
-
-![Tasks](public/screenshots/07-tasks.png)
-
-**Configuración** — gestión de proyectos y conexiones de API
-
-![Config](public/screenshots/08-config.png)
+![Tasks](screenshots/04-ops-tasks.png)
 
 ## Funcionalidades
 

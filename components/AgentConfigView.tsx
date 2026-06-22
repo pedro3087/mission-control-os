@@ -79,7 +79,7 @@ function SystemPromptSection({ cfg, onChange }: { cfg: AgentFullConfig; onChange
         </div>
         <div className="flex items-center gap-2 text-[9px] font-mono text-[#6e7b8b]">
           <span>MAX TOKENS</span>
-          <span className="text-[#c9d1d9] font-bold">{cfg.maxTokens.toLocaleString()}</span>
+          <span className="text-[#c9d1d9] font-bold">{cfg.maxTokens.toLocaleString('en-US')}</span>
         </div>
         <div className="flex items-center gap-2 text-[9px] font-mono text-[#6e7b8b]">
           <span>APROBACIÓN HUMANA</span>

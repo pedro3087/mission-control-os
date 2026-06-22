@@ -23,7 +23,7 @@ export function PortfolioPanel() {
         {/* Aggregate stats */}
         <div className="grid grid-cols-2 gap-1.5">
           <AggregateStat label="TOTAL MRR" value={formatRevenue(totalMRR)} color="text-[#39d353]" />
-          <AggregateStat label="USUARIOS" value={totalUsers.toLocaleString()} color="text-[#58a6ff]" />
+          <AggregateStat label="USUARIOS" value={totalUsers.toLocaleString('en-US')} color="text-[#58a6ff]" />
           <AggregateStat label="ESTABLES" value={`${healthyCount}/${projects.length}`} color="text-[#39d353]" />
           <AggregateStat
             label="DOWN"

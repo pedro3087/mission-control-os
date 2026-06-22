@@ -45,7 +45,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <Metric
           icon={<Users className="w-2.5 h-2.5" />}
           label="USUARIOS"
-          value={project.activeUsers.toLocaleString()}
+          value={project.activeUsers.toLocaleString('en-US')}
           sub={<span className="text-[#6e7b8b]">{project.conversionPct}% conv</span>}
         />
         <Metric
