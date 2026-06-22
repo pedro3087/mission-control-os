@@ -1,65 +1,87 @@
-import Image from "next/image";
+"use client";
+import { OSHeader } from "@/components/OSHeader";
+import { PortfolioPanel } from "@/components/PortfolioPanel";
+import { BrainPanel } from "@/components/BrainPanel";
+import { GuardianFeed } from "@/components/GuardianFeed";
+import { ChatBubble } from "@/components/ChatBubble";
+import { SettingsOverlay } from "@/components/settings/SettingsOverlay";
+import { TasksOverlay } from "@/components/TasksOverlay";
+import { StoreHydrator } from "@/components/StoreHydrator";
+import { useStore } from "@/lib/store";
+import type { DashboardView } from "@/lib/store";
 
-export default function Home() {
+const VIEW_WIDTHS: Record<DashboardView, { portfolio: string; brain: string; guardian: string }> = {
+  standard:  { portfolio: "w-[340px]", brain: "flex-1",    guardian: "w-[320px]" },
+  portfolio: { portfolio: "flex-1",    brain: "w-[280px]", guardian: "w-[240px]" },
+  brain:     { portfolio: "w-[220px]", brain: "flex-1",    guardian: "w-[220px]" },
+  ops:       { portfolio: "w-[220px]", brain: "w-[280px]", guardian: "flex-1"    },
+};
+
+const VIEW_LABELS: Record<DashboardView, { portfolio: string; brain: string; guardian: string }> = {
+  standard:  { portfolio: "PORTFOLIO",         brain: "FACTORY BRAIN",     guardian: "GUARDIAN · EN VIVO" },
+  portfolio: { portfolio: "PORTFOLIO · FOCUS", brain: "FACTORY BRAIN",     guardian: "GUARDIAN" },
+  brain:     { portfolio: "PORTFOLIO",         brain: "FACTORY BRAIN · FOCUS", guardian: "GUARDIAN" },
+  ops:       { portfolio: "PORTFOLIO",         brain: "FACTORY BRAIN",     guardian: "GUARDIAN · FOCUS" },
+};
+
+export default function MissionControl() {
+  const { dashboardView } = useStore();
+  const widths = VIEW_WIDTHS[dashboardView];
+  const labels = VIEW_LABELS[dashboardView];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="flex flex-col h-screen overflow-hidden bg-[#070b0f]">
+      <StoreHydrator />
+      <OSHeader />
+
+      {/* 3-panel OS layout + overlays */}
+      <div className="flex flex-1 min-h-0 relative">
+        <SettingsOverlay />
+        <TasksOverlay />
+
+        <PanelWrapper label={labels.portfolio} width={widths.portfolio} borderRight>
+          <PortfolioPanel />
+        </PanelWrapper>
+
+        <PanelWrapper label={labels.brain} width={widths.brain} borderRight>
+          <BrainPanel />
+        </PanelWrapper>
+
+        <PanelWrapper label={labels.guardian} width={widths.guardian}>
+          <GuardianFeed />
+        </PanelWrapper>
+      </div>
+
+      <ChatBubble />
+
+      {/* OS status bar */}
+      <footer className="h-5 bg-[#0d1117] border-t border-[#1a2332] flex items-center px-3 gap-4 shrink-0">
+        <span className="text-[9px] font-mono text-[#6e7b8b]">SaaS Factory OS v5.0</span>
+        <span className="text-[9px] font-mono text-[#6e7b8b]">·</span>
+        <span className="text-[9px] font-mono text-[#6e7b8b]">8 proyectos · 3,257 usuarios · $1,323 MRR</span>
+        <span className="flex-1" />
+        <span className="text-[9px] font-mono text-[#6e7b8b]">guardian activo · auto-fix ON · brain aprendiendo</span>
+      </footer>
+    </div>
+  );
+}
+
+function PanelWrapper({
+  label, width, borderRight, children,
+}: {
+  label: string;
+  width: string;
+  borderRight?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={`${width} flex flex-col min-h-0 ${borderRight ? "border-r border-[#1a2332]" : ""} transition-all duration-300`}>
+      <div className="h-6 flex items-center px-3 border-b border-[#1a2332] bg-[#070b0f] shrink-0">
+        <span className="text-[9px] font-bold tracking-widest text-[#6e7b8b] font-mono">{label}</span>
+      </div>
+      <div className="flex-1 min-h-0 overflow-hidden">
+        {children}
+      </div>
     </div>
   );
 }

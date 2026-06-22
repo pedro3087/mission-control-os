@@ -1,26 +1,111 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --os-bg: #070b0f;
+  --os-surface: #0d1117;
+  --os-border: #1a2332;
+  --os-border-bright: #1f3044;
+  --os-text: #c9d1d9;
+  --os-text-dim: #6e7b8b;
+  --os-green: #39d353;
+  --os-green-dim: #1a6630;
+  --os-yellow: #f0c000;
+  --os-yellow-dim: #6b5500;
+  --os-red: #f85149;
+  --os-red-dim: #5c1f1f;
+  --os-blue: #58a6ff;
+  --os-blue-dim: #1a3a5c;
+  --os-purple: #bc8cff;
+  --os-cyan: #39c5cf;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--os-bg);
+  --color-foreground: var(--os-text);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--os-bg);
+  color: var(--os-text);
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 13px;
 }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--os-surface); }
+::-webkit-scrollbar-thumb { background: var(--os-border-bright); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--os-blue-dim); }
+
+/* Scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Pulsing dot animations */
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 4px 1px #39d353; opacity: 1; }
+  50% { box-shadow: 0 0 8px 3px #39d353; opacity: 0.7; }
+}
+@keyframes pulse-yellow {
+  0%, 100% { box-shadow: 0 0 4px 1px #f0c000; opacity: 1; }
+  50% { box-shadow: 0 0 8px 3px #f0c000; opacity: 0.7; }
+}
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 4px 1px #f85149; opacity: 1; }
+  50% { box-shadow: 0 0 10px 4px #f85149; opacity: 0.7; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes slide-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.pulse-green { animation: pulse-green 2s ease-in-out infinite; }
+.pulse-yellow { animation: pulse-yellow 1.5s ease-in-out infinite; }
+.pulse-red { animation: pulse-red 1s ease-in-out infinite; }
+.blink { animation: blink 1s step-end infinite; }
+.slide-in { animation: slide-in 0.3s ease-out; }
+.fade-in { animation: fade-in 0.2s ease-out; }
+
+@keyframes glow-pulse-purple {
+  0%, 100% { box-shadow: 0 0 12px 2px rgba(188,140,255,0.5), 0 0 32px 4px rgba(188,140,255,0.2); }
+  50%       { box-shadow: 0 0 20px 6px rgba(188,140,255,0.8), 0 0 48px 10px rgba(188,140,255,0.3); }
+}
+@keyframes ring-expand {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.glow-pulse-purple { animation: glow-pulse-purple 2s ease-in-out infinite; }
+.ring-expand       { animation: ring-expand 1.8s ease-out infinite; }
