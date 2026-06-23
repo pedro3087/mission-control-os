@@ -84,6 +84,50 @@ Funciona sin ninguna API key. Carga proyectos, patrones y alertas de ejemplo. Lo
 
 ## Arquitectura del sistema
 
+### Stack por capa
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        F R O N T E N D                              │
+│                                                                     │
+│  Next.js 16 (App Router)  ·  React 19  ·  TypeScript               │
+│  Tailwind CSS v4  ·  Zustand (estado + localStorage persist)        │
+│  Lucide React (iconos)  ·  Remotion (videos programáticos)          │
+├─────────────────────────────────────────────────────────────────────┤
+│                     A P I   L A Y E R                               │
+│                                                                     │
+│  Next.js API Routes: /api/chat · /api/alerts · /api/brain           │
+│  /api/projects · /api/render                                        │
+│  SSE streaming  ·  REST  ·  JSON                                    │
+├─────────────────────────────────────────────────────────────────────┤
+│                  A G E N T   S E R V E R                            │
+│               (business-os-template)                                │
+│                                                                     │
+│  Claude Agent SDK (Anthropic)  ·  Node.js  ·  TypeScript            │
+│  5 agentes: OS · Portfolio · Guardian · Brain · Acquisition         │
+│  Streaming SSE  ·  Session pool  ·  Cron scheduler                  │
+│  Grammy (Telegram bot)  ·  Groq STT  ·  ElevenLabs TTS             │
+├─────────────────────────────────────────────────────────────────────┤
+│                    B A S E   D E   D A T O S                        │
+│                                                                     │
+│  SQLite (better-sqlite3)                                            │
+│  ├── sessions     → chat_id ↔ SDK session_id                       │
+│  ├── memories     → FTS5 full-text search (semántico + episódico)   │
+│  ├── scheduled_tasks → cron jobs + category mapping                 │
+│  └── cron_sessions   → reutilización semanal de sesiones            │
+│                                                                     │
+│  Zustand persist  → localStorage (estado del dashboard)             │
+├─────────────────────────────────────────────────────────────────────┤
+│              S E R V I C I O S   E X T E R N O S                   │
+│                                                                     │
+│  Anthropic API     → Claude (Haiku/Sonnet) para agentes             │
+│  OpenRouter        → 300+ modelos, routing por costo                │
+│  GitHub API        → repos, PRs de auto-fix, alertas                │
+│  Vercel API        → deploys, builds, status                        │
+│  Telegram Bot API  → canal de comunicación alternativo              │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
 ### Diagrama de componentes
 
 ```mermaid
