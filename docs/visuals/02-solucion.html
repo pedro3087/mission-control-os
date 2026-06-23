@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1200px; height: 675px;
+  background: #fdf6ec;
+  font-family: 'Caveat', cursive;
+  overflow: hidden;
+  position: relative;
+}
+.title {
+  position: absolute; top: 32px; left: 50px;
+  font-size: 50px; font-weight: 700; color: #1a1a2e;
+}
+.title span { color: #7c3aed; border-bottom: 4px solid #7c3aed; }
+.subtitle {
+  position: absolute; top: 92px; left: 50px;
+  font-size: 24px; color: #6b7280;
+  font-family: 'Patrick Hand', cursive;
+}
+
+/* Three panels */
+.panels {
+  position: absolute; top: 140px; left: 40px; right: 40px;
+  display: flex; gap: 24px;
+}
+.panel {
+  flex: 1; background: #fff; border-radius: 16px;
+  padding: 24px; border-top: 5px solid var(--color);
+  box-shadow: 3px 3px 0 #e5e7eb;
+  position: relative;
+}
+.panel-icon {
+  font-size: 48px; margin-bottom: 8px;
+}
+.panel-name {
+  font-size: 30px; font-weight: 700;
+  color: var(--color);
+}
+.panel-desc {
+  font-size: 20px; color: #374151;
+  font-family: 'Patrick Hand', cursive;
+  margin-top: 8px; line-height: 1.4;
+}
+.panel-features {
+  margin-top: 12px; list-style: none;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 18px; color: #6b7280;
+}
+.panel-features li { padding: 3px 0; }
+.panel-features li::before { content: "→ "; color: var(--color); font-weight: 700; }
+
+/* Flow arrows */
+.flow {
+  position: absolute; bottom: 35px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 16px;
+}
+.flow-step {
+  background: #7c3aed; color: #fff; border-radius: 20px;
+  padding: 8px 20px; font-size: 20px;
+  font-family: 'Patrick Hand', cursive;
+  white-space: nowrap;
+}
+.flow-arrow { font-size: 28px; color: #7c3aed; }
+
+/* Decorations */
+.check {
+  position: absolute; top: 40px; right: 50px;
+  font-size: 44px; color: #10b981;
+}
+.sparkle {
+  position: absolute; top: 28px; right: 110px;
+  font-size: 24px; color: #f59e0b;
+}
+</style>
+</head>
+<body>
+  <div class="title"><span>Mission Control</span> — La solucion</div>
+  <div class="subtitle">Un cockpit. Tres paneles. Cero pestanas extra.</div>
+  <div class="check">✓</div>
+  <div class="sparkle">✦ ✧</div>
+
+  <div class="panels">
+    <div class="panel" style="--color: #3b82f6">
+      <div class="panel-icon">📊</div>
+      <div class="panel-name">Portfolio</div>
+      <div class="panel-desc">Todos tus proyectos en una vista</div>
+      <ul class="panel-features">
+        <li>Revenue y MRR</li>
+        <li>Usuarios activos</li>
+        <li>Uptime y latencia</li>
+        <li>Errores en 24h</li>
+      </ul>
+    </div>
+
+    <div class="panel" style="--color: #8b5cf6">
+      <div class="panel-icon">🧠</div>
+      <div class="panel-name">Factory Brain</div>
+      <div class="panel-desc">Patrones entre proyectos</div>
+      <ul class="panel-features">
+        <li>Design systems que convierten</li>
+        <li>Pricing que funciona</li>
+        <li>Nivel de confianza</li>
+        <li>Evidencia real</li>
+      </ul>
+    </div>
+
+    <div class="panel" style="--color: #ef4444">
+      <div class="panel-icon">🛡</div>
+      <div class="panel-name">Guardian</div>
+      <div class="panel-desc">Auto-fix con freno humano</div>
+      <ul class="panel-features">
+        <li>Detecta errores en vivo</li>
+        <li>Analiza stack trace</li>
+        <li>Genera fix + abre PR</li>
+        <li>Tu solo apruebas</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="flow-step">Error detectado</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Stack trace analizado</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Fix generado</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">PR abierto</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="background: #10b981">✓ Tu apruebas</div>
+  </div>
+</body>
+</html>

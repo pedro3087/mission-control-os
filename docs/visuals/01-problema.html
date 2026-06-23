@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1200px; height: 675px;
+  background: #fdf6ec;
+  font-family: 'Caveat', cursive;
+  overflow: hidden;
+  position: relative;
+}
+.title {
+  position: absolute; top: 32px; left: 50px;
+  font-size: 52px; font-weight: 700; color: #1a1a2e;
+  border-bottom: 4px solid #7c3aed;
+  padding-bottom: 4px;
+}
+.subtitle {
+  position: absolute; top: 95px; left: 50px;
+  font-size: 26px; color: #6b7280;
+  font-family: 'Patrick Hand', cursive;
+}
+
+/* Tabs chaos */
+.tabs-area {
+  position: absolute; top: 150px; left: 60px;
+  display: flex; flex-wrap: wrap; gap: 12px; width: 500px;
+}
+.tab {
+  background: #fff; border: 2px solid #d1d5db; border-radius: 10px;
+  padding: 12px 18px; font-size: 22px; color: #374151;
+  font-family: 'Patrick Hand', cursive;
+  transform: rotate(var(--rot, 0deg));
+  box-shadow: 2px 2px 0 #e5e7eb;
+}
+.tab:nth-child(1) { --rot: -2deg; border-color: #3b82f6; }
+.tab:nth-child(2) { --rot: 1deg; border-color: #10b981; }
+.tab:nth-child(3) { --rot: -1deg; border-color: #f59e0b; }
+.tab:nth-child(4) { --rot: 2deg; border-color: #8b5cf6; }
+.tab:nth-child(5) { --rot: -3deg; border-color: #ef4444; }
+.tab:nth-child(6) { --rot: 1deg; border-color: #06b6d4; }
+
+/* Founder stressed */
+.founder {
+  position: absolute; top: 160px; right: 80px;
+  text-align: center;
+}
+.founder-emoji { font-size: 100px; }
+.founder-label {
+  font-size: 24px; color: #6b7280;
+  font-family: 'Patrick Hand', cursive;
+  margin-top: 8px;
+}
+
+/* Problem cards */
+.problems {
+  position: absolute; bottom: 40px; left: 50px;
+  display: flex; gap: 24px;
+}
+.problem {
+  background: #fff; border-radius: 12px;
+  padding: 16px 20px; width: 340px;
+  border-left: 5px solid var(--color);
+  box-shadow: 3px 3px 0 #e5e7eb;
+}
+.problem-num {
+  font-size: 32px; font-weight: 700;
+  color: var(--color);
+}
+.problem-text {
+  font-size: 22px; color: #374151;
+  font-family: 'Patrick Hand', cursive;
+  margin-top: 4px; line-height: 1.3;
+}
+
+/* Decorations */
+.arrow-down {
+  position: absolute; top: 370px; left: 280px;
+  font-size: 60px; color: #7c3aed;
+  transform: rotate(15deg);
+}
+.excl {
+  position: absolute; top: 180px; right: 260px;
+  font-size: 48px; color: #ef4444;
+  transform: rotate(-10deg);
+  font-weight: 700;
+}
+.clock {
+  position: absolute; top: 280px; right: 200px;
+  font-size: 64px;
+}
+.zzz {
+  position: absolute; top: 230px; right: 120px;
+  font-size: 36px; color: #7c3aed;
+  font-weight: 700;
+  transform: rotate(-15deg);
+}
+.stars {
+  position: absolute; top: 30px; right: 50px;
+  font-size: 28px; color: #f59e0b;
+}
+</style>
+</head>
+<body>
+  <div class="title">El problema de operar varios SaaS</div>
+  <div class="subtitle">12 pestanas abiertas. Cero visibilidad.</div>
+
+  <div class="tabs-area">
+    <div class="tab">Vercel</div>
+    <div class="tab">GitHub</div>
+    <div class="tab">Stripe</div>
+    <div class="tab">Analytics</div>
+    <div class="tab">Supabase</div>
+    <div class="tab">Sentry</div>
+  </div>
+
+  <div class="excl">!?</div>
+  <div class="founder">
+    <div class="founder-emoji">😵‍💫</div>
+    <div class="founder-label">tu a las 2am</div>
+  </div>
+  <div class="clock">🕐</div>
+  <div class="zzz">zzZ</div>
+
+  <div class="arrow-down">⤵</div>
+
+  <div class="problems">
+    <div class="problem" style="--color: #ef4444">
+      <div class="problem-num">1</div>
+      <div class="problem-text">Sin visibilidad unificada entre proyectos</div>
+    </div>
+    <div class="problem" style="--color: #f59e0b">
+      <div class="problem-num">2</div>
+      <div class="problem-text">El conocimiento no se acumula entre apps</div>
+    </div>
+    <div class="problem" style="--color: #ef4444">
+      <div class="problem-num">3</div>
+      <div class="problem-text">Respuesta a errores manual y lenta</div>
+    </div>
+  </div>
+
+  <div class="stars">✦ ✧ ✦</div>
+</body>
+</html>
